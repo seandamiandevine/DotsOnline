@@ -24,6 +24,7 @@
 	});
     /* preload stim for speed */
     var images = ['stim/155.png', 'stim/156.png', 'stim/157.png', 'stim/158.png','stim/159.png', 'stim/160.png','stim/161.png', 'stim/162.png','stim/163.png', 'stim/164.png','stim/165.png', 'stim/166.png','stim/167.png', 'stim/168.png','stim/169.png', 'stim/170.png', 'stim/171.png', 'stim/172.png','stim/173.png', 'stim/174.png','stim/175.png', 'stim/176.png','stim/177.png', 'stim/178.png','stim/179.png', 'stim/180.png', 'stim/181.png', 'stim/182.png','stim/183.png', 'stim/184.png','stim/185.png', 'stim/186.png','stim/187.png', 'stim/188.png','stim/189.png', 'stim/190.png',        'stim/191.png', 'stim/192.png','stim/193.png', 'stim/194.png','stim/195.png', 'stim/196.png','stim/197.png', 'stim/198.png','stim/199.png', 'stim/200.png', 'stim/201.png','stim/202.png','stim/203.png', 'stim/204.png','stim/205.png', 'stim/206.png','stim/207.png', 'stim/208.png','stim/209.png', 'stim/210.png','stim/211.png','stim/212.png','stim/213.png', 'stim/214.png','stim/215.png', 'stim/216.png','stim/217.png', 'stim/218.png','stim/219.png',  'stim/220.png', 'stim/221.png','stim/222.png','stim/223.png', 'stim/224.png','stim/225.png', 'stim/226.png','stim/227.png', 'stim/228.png','stim/229.png','stim/230.png', 'stim/231.png','stim/232.png','stim/233.png', 'stim/234.png','stim/235.png', 'stim/236.png','stim/237.png', 'stim/238.png','stim/239.png','stim/240.png', 'stim/241.png','stim/242.png','stim/243.png', 'stim/244.png','stim/245.png', 'stim/246.png','stim/247.png', 'stim/248.png','stim/249.png','stim/250.png', 'stim/251.png','stim/252.png','stim/253.png', 'stim/254.png']
+
     /* setup fullscreen mode */
     var fs = {
 	type: 'fullscreen',
@@ -225,7 +226,8 @@
 
     jsPsych.init({
       timeline: timeline,
-      show_preload_progress_bar: true,
+      preload_images: images,
+      show_preload_progress_bar: true, 
       on_finish: function() {
         jsPsych.data.displayData();
       }
