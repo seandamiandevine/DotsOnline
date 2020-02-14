@@ -30,9 +30,9 @@
     }
 
     /* set constants */
-    var numtrials = 50;
+    var numtrials = 4;
     var numpractrials = 10;
-    var numblocks = 16;
+    var numblocks = 4;
     var blocks = _.range(numblocks);
     var praccolorfreq = .5;
 
@@ -148,6 +148,13 @@
       post_trial_gap: poststimtime
     };
 
+    var end = {
+      type: "html-keyboard-response",
+      stimulus: "<p>You have finished the experiment!</p>"+
+		"<p>You may now exit the window.</p>", 
+      choices: ['e']
+    };
+
 /* define practice trials */
   var pCount = 0; 
   var pstim = {
@@ -166,13 +173,14 @@
   var block = {
     type: 'html-keyboard-response',
     stimulus: function(){
-      text = "<p>You've finished Block "+(blockCount+1)+"</p><p>Press SPACE to continue.</p>";
+      text = "<p>Block "+(blockCount+1)+"</p><p>Press SPACE to continue.</p>";
       blockCount = blockCount + 1;
       trialCount = 0; // reset trials back down to zero
 
       return text
     },
     choices: ['space'],
+    post_trial_gap: postblocktime
   }
 
   var stim = {
@@ -209,9 +217,10 @@
 
   var timeline = [fs, demo, i1, i2, i3, i4, i5, i6, i7, ptrials, i8]
   for (i in _.range(numblocks)){
-    timeline.push(trials);
     timeline.push(block);
+    timeline.push(trials);
   }
+  timeline.push(end)
 
     jsPsych.init({
       timeline: timeline,
