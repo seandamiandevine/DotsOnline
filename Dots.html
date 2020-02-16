@@ -35,9 +35,9 @@
     }
 
     /* set constants */
-    var numtrials = 50;
+    var numtrials = 2;
     var numpractrials = 10;
-    var numblocks = 16;
+    var numblocks = 1;
     var blocks = _.range(numblocks);
     var praccolorfreq = .5;
 
@@ -191,7 +191,7 @@
   var stim = {
     type: "image-keyboard-response",
     stimulus: function(){
-      stim = 'stim/'+alltrials[blockCount][trialCount]+'.png';
+      stim = 'stim/'+alltrials[blockCount-1][trialCount]+'.png';
       trialCount = trialCount + 1;
       return stim
     },
@@ -227,12 +227,25 @@
   }
   timeline.push(end)
 
+    //save data
+    function saveData() {
+	  var xhr = new XMLHttpRequest();
+	  xhr.open('POST', 'config/write_data.php'); // change 'write_data.php' to point to php script.
+	  xhr.setRequestHeader('Content-Type', 'application/json');
+	  xhr.onload = function() {
+	    if(xhr.status == 200){
+	      var response = JSON.parse(xhr.responseText);
+	      console.log(response.success);
+	    }
+	  };
+	  xhr.send(jsPsych.data.get().json());
+	}
+
     jsPsych.init({
       timeline: timeline,
       preload_images: images,
       show_preload_progress_bar: true, 
-      on_finish: function() {
-        jsPsych.data.displayData();
+      on_finish: saveData
       }
     });
   </script>
